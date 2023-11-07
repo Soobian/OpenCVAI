@@ -1,0 +1,30 @@
+##############################################################################
+Part 1:
+
+Download https://itk.org/ItkSoftwareGuide.pdf and get familiar with Chapter 3 Registration (page 614 in pdf file)
+
+Run SITK_Registration.ipynb for the sample data T1_image_0007.nii.gz and DWI_image_0006.nii.gz. The sample data are segmentation of liver in MR images: DWI sequence and T1 sequence.
+The registration is supposed to deform DWI segmentation so that it is imposed on T1 segmentation.
+
+Check different parameters settings to improve quality of registration of DWI_image_0006.nii.gz to T1_image_0007.nii.gz - the quality of registration is quantified using metrics like Pearson or Spearman correlation coefficients - see the code.
+
+Apply the found transforms to raw MR images (DWI_image_0006_0000.nii.gz and T1_image_0007_0000.nii.gz)
+
+Propose a solution to a problem of lacking inverse transform for BSplineTransform.
+
+##############################################################################
+Part 2:
+
+Study tutorial on advanced registration at https://github.com/SimpleITK/TUTORIAL/blob/main/06_advanced_registration.ipynb
+
+The problem to be solved is to find an invertible transformation Tr which transforms a model of abdomen in initial_mask.nii.gz into a model of abdomen in final_mask.nii.gz.
+The difference betwen the two masks can result from some statistical variability of internal organ shapes' - this variability should be described by some startistical shape model (which is outside the scope of the lab).
+As said, the transformation must be invertible which means that Tr^(-1)(Tr(initial_mask.nii.gz)) should be equal to initial_mask.nii.gz.
+Ideally, Tr((initial_mask.nii.gz) should be close to final_mask.nii.gz (more closer means better registration).
+
+When designing the transform Tr try different filters (mentioned in the tutorial introduction: DemonsRegistrationFilter, DiffeomorphicDemonsRegistrationFilter, FastSymmetricForcesDemonsRegistrationFilter, SymmetricForcesDemonsRegistrationFilter) and different hyperparameters. Dice's coefficient can be used to test the quality of the registration: mean Dice'c coefficient for prostate, bladder, and bones (structures with labels 2, 3, and 4).
+
+After designing the best transform, apply it to ct.nii.gz.
+
+
+

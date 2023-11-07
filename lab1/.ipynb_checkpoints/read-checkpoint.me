@@ -1,0 +1,10 @@
+Download https://itk.org/ItkSoftwareGuide.pdf and get familiar with Chapter 3 Registration (page 614 in pdf file)
+
+Run SITK_Registration.ipynb for the sample data T1_image_0007.nii.gz and DWI_image_0006.nii.gz. The sample data are segmentation of liver in MR images: DWI sequence and T1 sequence.
+The registration is supposed to deform DWI segmentation so that it is imposed on T1 segmentation.
+
+Check different parameters settings to improve quality of registration of DWI_image_0006.nii.gz to T1_image_0007.nii.gz - the quality of registration is quantified using metrics like Pearson or Spearman correlation coefficients - see the code.
+
+Apply the found transforms to raw MR images (DWI_image_0006_0000.nii.gz and T1_image_0007_0000.nii.gz)
+
+Propose a solution to a problem of lacking inverse transform for BSplineTransform.
